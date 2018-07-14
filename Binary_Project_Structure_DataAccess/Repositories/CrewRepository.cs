@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Binary_Project_Structure_DataAccess.Models;
 using Binary_Project_Structure_DataAccess.Repositories;
@@ -13,7 +14,9 @@ namespace Binary_Project_Structure_DataAccess.Repositories
             Func<Crew, bool> filter = x => x.Id == entity.Id;
             Crew crew = base.GetById(filter);
             crew.PilotId = entity.PilotId;
-            crew.Pilot = context.SetAsync<Pilot>().Result.Find(x => x.Id == entity.PilotId);
+            var query = context.Set<Pilot>().Where(x => x.Id == entity.PilotId);
+
+            crew.Pilot = context.Set<Pilot>().Where(x => x.Id == entity.PilotId).FirstOrDefault();
             crew.Stewardesses = entity.Stewardesses;
         }
     }

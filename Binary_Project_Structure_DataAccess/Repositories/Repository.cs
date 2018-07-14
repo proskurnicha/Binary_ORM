@@ -18,14 +18,12 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 
         public virtual List<TEntity> GetAll()
         {
-            List<TEntity> query = context.SetAsync<TEntity>().Result;
-
-            return query.ToList();
+            return context.Set<TEntity>().ToList();
         }
 
         public virtual TEntity GetById(Func<TEntity, bool> filter = null)
         {
-            var query = context.SetAsync<TEntity>().Result.Where(filter);
+            var query = context.Set<TEntity>().Where(filter);
             if (query.Count() == 0)
                 return null;
 
@@ -34,7 +32,7 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 
         public virtual void Create(TEntity entity)
         {
-            context.SetAsync<TEntity>().Result.Add(entity);
+            context.Set<TEntity>().Add(entity);
         }
 
         public virtual void Update(TEntity entity)
@@ -44,11 +42,11 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 
         public virtual bool Delete(Predicate<TEntity> prEntity)
         {
-            TEntity entity = context.SetAsync<TEntity>().Result.Find(prEntity);
+            TEntity entity = context.Set<TEntity>().Find(prEntity);
 
             if (entity != null)
             {
-                List<TEntity> entities = context.SetAsync<TEntity>().Result;
+                List<TEntity> entities = context.Set<TEntity>().ToList();
                 entities.Remove(entity);
                 return true;
             }

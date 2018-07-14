@@ -33,31 +33,31 @@ namespace Binary_Project_Structure_DataAccess
             initializer.Initialize();
         }
 
-        public async Task<List<TEntity>> SetAsync<TEntity>() where TEntity : class
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
             if (Ticket is DbSet<TEntity>)
-                return await (Ticket as DbSet<TEntity>).ToListAsync();
+                return Ticket as DbSet<TEntity>;
 
             if (Stewardess is DbSet<TEntity>)
-                return await (Stewardess as DbSet<TEntity>).ToListAsync();
+                return  (Stewardess as DbSet<TEntity>);
 
             if (Pilot is DbSet<TEntity>)
-                return await (Pilot as DbSet<TEntity>).ToListAsync();
+                return  (Pilot as DbSet<TEntity>);
 
             if (Departure is DbSet<TEntity>)
-                return await (Departure as DbSet<TEntity>).ToListAsync();
+                return  (Departure as DbSet<TEntity>);
 
             if (Crew is DbSet<TEntity>)
-                return await (Crew as DbSet<TEntity>).ToListAsync();
+                return  (Crew as DbSet<TEntity>);
 
             if (TypeAircraft is DbSet<TEntity>)
-                return await (TypeAircraft as DbSet<TEntity>).ToListAsync();
+                return  (TypeAircraft as DbSet<TEntity>);
             
             if (Aircraft is DbSet<TEntity>)
-                return await (Aircraft as DbSet<TEntity>).ToListAsync();
+                return  (Aircraft as DbSet<TEntity>);
 
             if (Flight is DbSet<TEntity>)
-                return await (Flight as DbSet<TEntity>).ToListAsync();
+                return  (Flight as DbSet<TEntity>);
 
             return null;
         }
