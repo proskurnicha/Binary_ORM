@@ -25,7 +25,7 @@ namespace Binary_Project_Structure_DataAccess.Interfaces
 
         TEntity Set<TEntity>() where TEntity : class;
 
-        //int SaveChages();
+        int SaveChages();
 
         //Task<int> SaveChangesAsync();
     }

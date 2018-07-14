@@ -57,17 +57,21 @@ namespace Binary_Project_Structure_BLL.Services
         {
             TEntity entity = iMapper.Map<TEntityDto, TEntity>(entityDto);
             context.Set<IRepository<TEntity>>().Update(entity);
+            context.SaveChages();
         }
 
         public void Create<TEntityDto, TEntity>(TEntityDto entityDto) where TEntity : class
         {
             TEntity entity = iMapper.Map<TEntityDto, TEntity>(entityDto);
             context.Set<IRepository<TEntity>>().Create(entity);
+            context.SaveChages();
         }
 
         public bool Delete<TEntity>(Predicate<TEntity> prEntity) where TEntity : class
         {
-            return context.Set<IRepository<TEntity>>().Delete(prEntity);
+            bool result = context.Set<IRepository<TEntity>>().Delete(prEntity);
+            context.SaveChages();
+            return result;
         }
     }
 }

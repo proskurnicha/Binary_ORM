@@ -11,6 +11,18 @@ namespace Binary_Project_Structure_DataAccess.Repositories
     {
         protected DatabaseContext context;
 
+        public DatabaseContext Context
+        {
+            get
+            {
+                return context;
+            }
+            private set
+            {
+                context = value;
+            }
+        }
+
         public Repository()
         {
             context = new DatabaseContext();
@@ -51,16 +63,6 @@ namespace Binary_Project_Structure_DataAccess.Repositories
                 return true;
             }
             return false;
-        }
-
-        public virtual void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual Task SaveAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -16,9 +16,5 @@ namespace Binary_Project_Structure_DataAccess.Interfaces
         void Update(TEntity id);
 
         bool Delete(Predicate<TEntity> prEntity);
-
-        void Save();
-
-        Task SaveAsync();
     }
 }
