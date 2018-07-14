@@ -195,7 +195,6 @@ namespace Binary_Project_Structure_DataAccess
                {
                    Id = 1,
                    PilotId = 1,
-
                },
                new Crew()
                {

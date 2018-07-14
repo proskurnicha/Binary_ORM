@@ -21,9 +21,5 @@ namespace Binary_Project_Structure_DataAccess.Models
 
         [Required]
         public List<Stewardess> Stewardesses { get; set; }
-
-        [NotMapped]
-        public List<int> StewardessesId { get; set; }
-
     }
 }
