@@ -41,6 +41,11 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasIndex("TypeAircraftId");
 
                     b.ToTable("Aircraft");
+
+                    b.HasData(
+                        new { Id = 1, AircraftName = "Star", DateRelease = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Lifetime = new TimeSpan(0, 0, 0, 0, 0), TypeAircraftId = 1 },
+                        new { Id = 2, AircraftName = "Cometa", DateRelease = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Lifetime = new TimeSpan(0, 0, 0, 0, 0), TypeAircraftId = 2 }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Crew", b =>
@@ -58,6 +63,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasIndex("PilotId");
 
                     b.ToTable("Crew");
+
+                    b.HasData(
+                        new { Id = 1, PilotId = 1 },
+                        new { Id = 2, PilotId = 1 },
+                        new { Id = 3, PilotId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Departure", b =>
@@ -87,6 +98,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasIndex("FlightId");
 
                     b.ToTable("Departure");
+
+                    b.HasData(
+                        new { Id = 1, AircraftId = 1, CrewId = 1, DepartureTime = new DateTime(2018, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), FlightId = 1 },
+                        new { Id = 2, AircraftId = 2, CrewId = 2, DepartureTime = new DateTime(2018, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), FlightId = 2 },
+                        new { Id = 3, AircraftId = 1, CrewId = 3, DepartureTime = new DateTime(2018, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), FlightId = 3 }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Flight", b =>
@@ -109,6 +126,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Flight");
+
+                    b.HasData(
+                        new { Id = 1, ArrivalPoint = "Berlin", ArrivalTime = new TimeSpan(0, 10, 29, 0, 0), DeparturePoint = "Kiev", DepartureTime = new TimeSpan(0, 4, 46, 0, 0) },
+                        new { Id = 2, ArrivalPoint = "Riga", ArrivalTime = new TimeSpan(0, 8, 5, 0, 0), DeparturePoint = "Kiev", DepartureTime = new TimeSpan(0, 11, 30, 0, 0) },
+                        new { Id = 3, ArrivalPoint = "Brussels", ArrivalTime = new TimeSpan(0, 3, 15, 0, 0), DeparturePoint = "Kiev", DepartureTime = new TimeSpan(0, 5, 48, 0, 0) }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Pilot", b =>
@@ -131,6 +154,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pilot");
+
+                    b.HasData(
+                        new { Id = 1, DateBirth = new DateTime(1990, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Experience = 5, Name = "Ivan", Surname = "Ivanov" },
+                        new { Id = 2, DateBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), Experience = 10, Name = "Petr", Surname = "Petrov" },
+                        new { Id = 3, DateBirth = new DateTime(1993, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), Experience = 7, Name = "Sidr", Surname = "Sidorov" }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Stewardess", b =>
@@ -155,6 +184,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasIndex("CrewId");
 
                     b.ToTable("Stewardess");
+
+                    b.HasData(
+                        new { Id = 1, DateBirth = new DateTime(1990, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Natali", Surname = "Sidorova" },
+                        new { Id = 2, DateBirth = new DateTime(1995, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Kate", Surname = "Petrova" },
+                        new { Id = 3, DateBirth = new DateTime(1993, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Tanya", Surname = "Durova" }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Ticket", b =>
@@ -174,6 +209,12 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasIndex("FlightId");
 
                     b.ToTable("Ticket");
+
+                    b.HasData(
+                        new { Id = 1, FlightId = 1, Price = 200.0 },
+                        new { Id = 2, FlightId = 2, Price = 300.0 },
+                        new { Id = 3, FlightId = 3, Price = 400.0 }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.TypeAircraft", b =>
@@ -192,6 +233,11 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TypeAircraft");
+
+                    b.HasData(
+                        new { Id = 1, AircraftModel = 7, CarryingCapacity = 240000, NumberPlaces = 797 },
+                        new { Id = 2, AircraftModel = 9, CarryingCapacity = 164000, NumberPlaces = 183 }
+                    );
                 });
 
             modelBuilder.Entity("Binary_Project_Structure_DataAccess.Models.Aircraft", b =>

@@ -91,7 +91,7 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                         column: x => x.PilotId,
                         principalTable: "Pilot",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +113,7 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                         column: x => x.TypeAircraftId,
                         principalTable: "TypeAircraft",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,19 +157,19 @@ namespace Binary_Project_Structure_DataAccess.Migrations
                         column: x => x.AircraftId,
                         principalTable: "Aircraft",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Departure_Crew_CrewId",
                         column: x => x.CrewId,
                         principalTable: "Crew",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Departure_Flight_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flight",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

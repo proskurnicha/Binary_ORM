@@ -13,7 +13,7 @@ namespace Binary_Project_Structure_DataAccess.Repositories
             Func<Crew, bool> filter = x => x.Id == entity.Id;
             Crew crew = base.GetById(filter);
             crew.PilotId = entity.PilotId;
-            crew.Pilot = DataSource.Pilots.Find(x => x.Id == entity.PilotId);
+            crew.Pilot = context.SetAsync<Pilot>().Result.Find(x => x.Id == entity.PilotId);
             crew.Stewardesses = entity.Stewardesses;
         }
     }

@@ -21,10 +21,8 @@ namespace Binary_Project_Structure_DataAccess.Models
         [Required]
         public TypeAircraft TypeAircraft { get; set; }
 
-        [Required]
         public DateTime DateRelease { get; set; }
 
-        [Required]
         public TimeSpan Lifetime { get; set; }
     }
 }

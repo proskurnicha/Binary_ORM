@@ -15,7 +15,7 @@ namespace Binary_Project_Structure_DataAccess.Repositories
             Ticket ticket = base.GetById(filter);
             ticket.Price = entity.Price;
             ticket.FlightId = entity.FlightId;
-            ticket.Flight = DataSource.Flights.Find(flight => flight.Id == entity.FlightId);
+            ticket.Flight = context.SetAsync<Flight>().Result.Find(flight => flight.Id == entity.FlightId);
         }
     }
 }

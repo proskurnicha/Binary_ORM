@@ -6,8 +6,6 @@ namespace Binary_Project_Structure_DataAccess
     {
         static void Main(string[] args)
         {
-            //DatabaseContext context = new DatabaseContext();
-            //Console.ReadLine();
         }
     }
 }

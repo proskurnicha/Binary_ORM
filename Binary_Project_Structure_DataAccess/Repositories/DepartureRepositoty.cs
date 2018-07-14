@@ -13,12 +13,12 @@ namespace Binary_Project_Structure_DataAccess.Repositories
             Func<Departure, bool> filter = x => x.Id == entity.Id;
             Departure departure = base.GetById(filter);
             departure.AircraftId = entity.AircraftId;
-            departure.Aircraft  = DataSource.Aircrafts.Find(x => x.Id == entity.AircraftId);
+            departure.Aircraft  = context.SetAsync< Aircraft>().Result.Find(x => x.Id == entity.AircraftId);
             departure.CrewId = entity.CrewId;
-            departure.Crew = DataSource.Crews.Find(x => x.Id == entity.CrewId);
+            departure.Crew = context.SetAsync<Crew>().Result.Find(x => x.Id == entity.CrewId);
             departure.DepartureTime = entity.DepartureTime;
             departure.FlightId = entity.FlightId;
-            departure.Flight = DataSource.Flights.Find(x => x.Id == entity.FlightId);
+            departure.Flight = context.SetAsync<Flight>().Result.Find(x => x.Id == entity.FlightId);
         }
     }
 }
