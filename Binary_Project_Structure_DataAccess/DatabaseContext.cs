@@ -11,7 +11,7 @@ namespace Binary_Project_Structure_DataAccess
     {
         public DatabaseContext()
         {
-
+            Database.EnsureCreated();
         }
         public DbSet<Aircraft> Aircraft { get; set; }
         public DbSet<Crew> Crew { get; set; }
@@ -24,7 +24,7 @@ namespace Binary_Project_Structure_DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AirportDatabase;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AirportModelDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
