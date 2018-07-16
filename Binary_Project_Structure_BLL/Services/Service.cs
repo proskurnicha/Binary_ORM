@@ -21,26 +21,8 @@ namespace Binary_Project_Structure_BLL.Services
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             context = ninjectKernel.Get<IUnitOfWork>();
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Aircraft, AircraftDto>();
-                cfg.CreateMap<AircraftDto, Aircraft>();
-                cfg.CreateMap<Crew, CrewDto>();
-                cfg.CreateMap<CrewDto, Crew>();
-                cfg.CreateMap<Departure, DepartureDto>();
-                cfg.CreateMap<DepartureDto, Departure>();
-                cfg.CreateMap<Flight, FlightDto>();
-                cfg.CreateMap<FlightDto, Flight>();
-                cfg.CreateMap<Pilot, PilotDto>();
-                cfg.CreateMap<PilotDto, Pilot>();
-                cfg.CreateMap<Stewardess, StewardessDto>();
-                cfg.CreateMap<StewardessDto, Stewardess>();
-                cfg.CreateMap<Ticket, TicketDto>();
-                cfg.CreateMap<TicketDto, Ticket>();
-                cfg.CreateMap<TypeAircraft, TypeAircraftDto>();
-                cfg.CreateMap<TypeAircraftDto, TypeAircraft>();
-            });
-            iMapper = config.CreateMapper();
+            MapperInitializer initializer = new MapperInitializer();
+            iMapper = initializer.Initialize();
         }
 
         public  List<TEntityDto> GetAll<TEntity, TEntityDto>() where TEntity : class
@@ -57,17 +39,21 @@ namespace Binary_Project_Structure_BLL.Services
         {
             TEntity entity = iMapper.Map<TEntityDto, TEntity>(entityDto);
             context.Set<IRepository<TEntity>>().Update(entity);
+            context.SaveChages();
         }
 
         public void Create<TEntityDto, TEntity>(TEntityDto entityDto) where TEntity : class
         {
             TEntity entity = iMapper.Map<TEntityDto, TEntity>(entityDto);
             context.Set<IRepository<TEntity>>().Create(entity);
+            context.SaveChages();
         }
 
         public bool Delete<TEntity>(Predicate<TEntity> prEntity) where TEntity : class
         {
-            return context.Set<IRepository<TEntity>>().Delete(prEntity);
+            bool result = context.Set<IRepository<TEntity>>().Delete(prEntity);
+            context.SaveChages();
+            return result;
         }
     }
 }

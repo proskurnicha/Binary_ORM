@@ -9,6 +9,12 @@ namespace Binary_Project_Structure_DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
+        DatabaseContext databaseContext;
+
+        public UnitOfWork()
+        {
+            databaseContext = new DatabaseContext();
+        }
         private AircraftRepository aircraftRepository;
 
         private CrewRepository crewRepository;
@@ -20,7 +26,7 @@ namespace Binary_Project_Structure_DataAccess.UnitOfWork
         private PilotRepository pilotRepository;
 
         private StewardessRepository stewardessRepository;
-                
+
         private TicketRepository ticketRepository;
 
         private TypeAircraftRepository typeAircraftRepository;
@@ -85,7 +91,7 @@ namespace Binary_Project_Structure_DataAccess.UnitOfWork
             }
         }
 
-        public IRepository<Ticket> Tickets  
+        public IRepository<Ticket> Tickets
         {
             get
             {
@@ -105,7 +111,12 @@ namespace Binary_Project_Structure_DataAccess.UnitOfWork
             }
         }
 
-        public TEntity Set<TEntity>()  where TEntity : class
+        public int SaveChages()
+        {
+            return databaseContext.SaveChanges();
+        }
+
+        public TEntity Set<TEntity>() where TEntity : class
         {
             if (Tickets is TEntity)
                 return Tickets as TEntity;

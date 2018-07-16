@@ -33,14 +33,14 @@ namespace Binary_Project_Structure
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IAircraftService, AircraftService>();
-            services.AddSingleton<ICrewService, CrewService>();
-            services.AddSingleton<IDepartureService, DepartureService>();
-            services.AddSingleton<IFlightService, FlightService>();
-            services.AddSingleton<IPilotService, PilotService>();
-            services.AddSingleton<IStewardessService, StewardessService>();
-            services.AddSingleton<ITicketService, TicketService>();
-            services.AddSingleton<ITypeAircraftService, TypeAircraftService>();
+            services.AddTransient<IAircraftService, AircraftService>();
+            services.AddTransient<ICrewService, CrewService>();
+            services.AddTransient<IDepartureService, DepartureService>();
+            services.AddTransient<IFlightService, FlightService>();
+            services.AddTransient<IPilotService, PilotService>();
+            services.AddTransient<IStewardessService, StewardessService>();
+            services.AddTransient<ITicketService, TicketService>();
+            services.AddTransient<ITypeAircraftService, TypeAircraftService>();
 
         }
 

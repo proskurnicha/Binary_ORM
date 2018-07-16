@@ -6,7 +6,6 @@ namespace Binary_Project_Structure_DataAccess
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }

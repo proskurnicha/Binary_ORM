@@ -9,23 +9,33 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        DataSource dataSource;
+        protected DatabaseContext context;
+
+        public DatabaseContext Context
+        {
+            get
+            {
+                return context;
+            }
+            private set
+            {
+                context = value;
+            }
+        }
 
         public Repository()
         {
-            dataSource = new DataSource();
+            context = new DatabaseContext();
         }
 
         public virtual List<TEntity> GetAll()
         {
-            List<TEntity> query = dataSource.Set<TEntity>();
-
-            return query.ToList();
+            return context.Set<TEntity>().ToList();
         }
 
         public virtual TEntity GetById(Func<TEntity, bool> filter = null)
         {
-            var query = dataSource.Set<TEntity>().Where(filter);
+            var query = context.Set<TEntity>().Where(filter);
             if (query.Count() == 0)
                 return null;
 
@@ -34,7 +44,7 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 
         public virtual void Create(TEntity entity)
         {
-            dataSource.Set<TEntity>().Add(entity);
+            context.Set<TEntity>().Add(entity);
         }
 
         public virtual void Update(TEntity entity)
@@ -44,25 +54,15 @@ namespace Binary_Project_Structure_DataAccess.Repositories
 
         public virtual bool Delete(Predicate<TEntity> prEntity)
         {
-            TEntity entity = dataSource.Set<TEntity>().Find(prEntity);
+            TEntity entity = context.Set<TEntity>().Find(prEntity);
 
             if (entity != null)
             {
-                List<TEntity> entities = dataSource.Set<TEntity>();
+                List<TEntity> entities = context.Set<TEntity>().ToList();
                 entities.Remove(entity);
                 return true;
             }
             return false;
-        }
-
-        public virtual void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual Task SaveAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

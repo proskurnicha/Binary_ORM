@@ -4,11 +4,17 @@ using System.Text;
 using Binary_Project_Structure_DataAccess.Models;
 using Binary_Project_Structure_DataAccess.Interfaces;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Binary_Project_Structure_DataAccess.Repositories
 {
     public class FlightRepository : Repository<Flight>
     {
+        public override List<Flight> GetAll()
+        {
+            return context.Set<Flight>().Include(s => s.Tickets).ToList();
+        }
+
         public override void Update(Flight entity)
         {
             Func<Flight, bool> filter = x => x.Id == entity.Id;

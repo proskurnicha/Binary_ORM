@@ -16,7 +16,7 @@ namespace Binary_Project_Structure_DataAccess.Repositories
             aircraft.DateRelease = entity.DateRelease;
             aircraft.Lifetime = entity.Lifetime;
             aircraft.TypeAircraftId = entity.TypeAircraftId;
-            aircraft.TypeAircraft = DataSource.TypeAircrafts.Find(x => x.Id == entity.TypeAircraftId);
+            aircraft.TypeAircraft = context.Set<TypeAircraft>().Where(x => x.Id == entity.TypeAircraftId).FirstOrDefault();
         }
     }
 }
